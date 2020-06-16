@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/next-dance-step/static/css/main.4bf3c838.chunk.css",
+    "main.js": "/next-dance-step/static/js/main.96232c0c.chunk.js",
+    "main.js.map": "/next-dance-step/static/js/main.96232c0c.chunk.js.map",
+    "runtime-main.js": "/next-dance-step/static/js/runtime-main.707c14b2.js",
+    "runtime-main.js.map": "/next-dance-step/static/js/runtime-main.707c14b2.js.map",
+    "static/js/2.806793cd.chunk.js": "/next-dance-step/static/js/2.806793cd.chunk.js",
+    "static/js/2.806793cd.chunk.js.map": "/next-dance-step/static/js/2.806793cd.chunk.js.map",
+    "index.html": "/next-dance-step/index.html",
+    "precache-manifest.5fc2b103edb0cbda9ccbfda6476086c5.js": "/next-dance-step/precache-manifest.5fc2b103edb0cbda9ccbfda6476086c5.js",
+    "service-worker.js": "/next-dance-step/service-worker.js",
+    "static/css/main.4bf3c838.chunk.css.map": "/next-dance-step/static/css/main.4bf3c838.chunk.css.map",
+    "static/js/2.806793cd.chunk.js.LICENSE.txt": "/next-dance-step/static/js/2.806793cd.chunk.js.LICENSE.txt",
+    "static/media/wcs.png": "/next-dance-step/static/media/wcs.405bbf4e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.707c14b2.js",
+    "static/js/2.806793cd.chunk.js",
+    "static/css/main.4bf3c838.chunk.css",
+    "static/js/main.96232c0c.chunk.js"
+  ]
+}
