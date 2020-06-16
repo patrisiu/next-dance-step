@@ -13,14 +13,8 @@ export default class Cloud extends React.Component {
     }
 
     render() {
-        const style = {
-            position: "fixed",
-            left: "16px",
-            bottom: "16px"
-        };
-
         return (
-            <Fab onClick={this.handleClick} style={style}>
+            <Fab onClick={this.handleClick} style={{ position: "fixed", left: "16px", bottom: "16px" }}>
                 <CloudDownloadRoundedIcon />
             </Fab >
         );

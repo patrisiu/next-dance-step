@@ -1,7 +1,4 @@
 .component-loader-container {
-    /* background-image: url(./wcs.png);
-    background-repeat: no-repeat;
-    background-position: center center; */
     height: 100vh;
     padding-top: 16px;
 }
@@ -26,4 +23,10 @@
 
 .component-loader-paper {
     margin-top: 16px;
+}
+
+.component-loader-readme {
+    position: fixed;
+    bottom: 2px;
+    right: 6px;
 }

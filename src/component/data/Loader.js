@@ -1,16 +1,16 @@
 import React from 'react';
 import './Loader.css';
-import Error from './Error';
+import Disclaimer from './Disclaimer';
 import logo from './wcs.png';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 
 
 export default class Loader extends React.Component {
-
     constructor(props) {
         super(props);
         this.googleSheetCode = this.getGoogleSheetCode();
@@ -34,9 +34,10 @@ export default class Loader extends React.Component {
 
     status = (response) => {
         if (response.status >= 200 && response.status < 300) {
-            return Promise.resolve(response)
+            return Promise.resolve(response);
         } else {
-            return Promise.reject(new Error(response.statusText))
+            console.log(response.statusText);
+            return Promise.reject(new Error(response.statusText));
         }
     }
 
@@ -45,7 +46,7 @@ export default class Loader extends React.Component {
     }
 
     loadGoogleSheet = (googleSheetCode, googleSheetPage) => {
-        fetch(this.googleSheetUrl(googleSheetCode, googleSheetPage))
+        fetch(this.googleSheetUrl(googleSheetCode, googleSheetPage), { mode: 'cors' })
             .then(this.status)
             .then(this.json)
             .then(this.parse)
@@ -56,7 +57,7 @@ export default class Loader extends React.Component {
         if (this.state.dances.length === 0) {
             this.setState({
                 error: {
-                    status: true,
+                    hasError: true,
                     message: error.toString()
                 }
             });
@@ -170,8 +171,16 @@ export default class Loader extends React.Component {
         );
     };
 
-    promptError = () => (
-        <Error message={this.state.error.message} googleSheetCode={this.googleSheetCode} />
+    promptDisclaimer = () => (
+        <Disclaimer message={this.state.error.message} googleSheetCode={this.googleSheetCode} />
+    );
+
+    getReadme = () => (
+        <Container className="component-loader-center">
+            <Typography className="component-loader-readme" variant="caption">
+                <Link href="https://github.com/patrisiu/next-dance-step/">GitHub Source</Link>
+            </Typography>
+        </Container>
     );
 
     render() {
@@ -192,9 +201,10 @@ export default class Loader extends React.Component {
                         </Paper>
                     </Grid>
                     <Grid item>
-                        {this.state.error.hasError ? this.promptError() : this.promptLoading()}
+                        {this.state.error.hasError ? this.promptDisclaimer() : this.promptLoading()}
                     </Grid>
                 </Grid>
+                {this.getReadme()}
             </Container>
         );
     }

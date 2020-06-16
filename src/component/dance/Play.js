@@ -14,14 +14,8 @@ export default class Play extends React.Component {
     }
 
     render() {
-        const style = {
-            position: "fixed",
-            right: "16px",
-            bottom: "16px"
-        };
-
         return (
-            <Fab onClick={this.handleClick} style={style}>
+            <Fab onClick={this.handleClick} style={{ position: "fixed", right: "16px", bottom: "16px" }}>
                 {this.props.play ? <StopIcon /> : <PlayArrowIcon />}
             </Fab >
         );
