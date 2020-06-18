@@ -18,8 +18,8 @@ export default class InputSource extends React.Component {
                 autoFocus
                 margin="dense"
                 id="datasource"
-                label="Google Spreadsheet Link Address"
-                type="email"
+                label="Google Spreadsheet URL"
+                type="url"
                 fullWidth
                 onChange={this.handleChange}
                 error={this.props.error}

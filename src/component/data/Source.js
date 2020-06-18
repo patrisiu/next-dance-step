@@ -62,9 +62,9 @@ export default class Source extends React.Component {
                 <DialogTitle id="form-dialog-title">Data Source</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        To load another data source, please enter your Google Spreadsheet URL here.
+                        To load another data source, please enter your Google Spreadsheet Link Address here.
                         The application will restart to load the new values.
-                </DialogContentText>
+                    </DialogContentText>
                     <InputSource onChange={this.validateGoogleSheetUrl} error={this.state.wrongUrl} />
                 </DialogContent>
                 <DialogActions>

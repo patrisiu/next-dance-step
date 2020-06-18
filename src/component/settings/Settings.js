@@ -4,6 +4,7 @@ import Source from '../data/Source';
 import Levels from './Levels';
 import Data from './Data';
 import Timer from './Timer';
+import Steps from '../dance/Steps';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -16,8 +17,8 @@ export default class Settings extends React.Component {
         this.onChangeData = this.onChangeData.bind(this);
         this.onChangeLevels = this.onChangeLevels.bind(this);
         this.onChangeTimer = this.onChangeTimer.bind(this);
-        this.openSourceDialog = this.openSourceDialog.bind(this);
-        this.closeSourceDialog = this.closeSourceDialog.bind(this);
+        this.openDialogSource = this.openDialogSource.bind(this);
+        this.closeDialogSource = this.closeDialogSource.bind(this);
         this.options = [];
         this.range = [];
         this.props.data.map((dance) => {
@@ -31,7 +32,8 @@ export default class Settings extends React.Component {
             });
         });
         this.state = {
-            source: false
+            source: false,
+            steps: false
         };
     }
 
@@ -63,12 +65,20 @@ export default class Settings extends React.Component {
         });
     }
 
-    openSourceDialog = () => {
+    openDialogSource = () => {
         this.setState({ source: true });
     }
 
-    closeSourceDialog = () => {
+    closeDialogSource = () => {
         this.setState({ source: false });
+    }
+
+    openDialogSteps = () => {
+        this.setState({ steps: true });
+    }
+
+    closeDialogSteps = () => {
+        this.setState({ steps: false });
     }
 
     render() {
@@ -104,8 +114,10 @@ export default class Settings extends React.Component {
             },
             {
                 element: <Button
-                    variant="contained">List Steps
-                </Button>,
+                    variant="contained"
+                    onClick={this.openDialogSteps}>
+                    List Steps
+                    </Button>,
                 timeout: 1500,
                 key: "settings-button-list"
             }
@@ -124,8 +136,9 @@ export default class Settings extends React.Component {
                         )
                     }
                 </Grid>
-                <Cloud onClick={this.openSourceDialog} />
-                <Source source={this.state.source} onClose={this.closeSourceDialog} />
+                <Cloud onClick={this.openDialogSource} />
+                <Source source={this.state.source} onClose={this.closeDialogSource} />
+                <Steps open={this.state.steps} onClose={this.closeDialogSteps} data={this.props.data[this.props.settings.value]} />
             </Container>
         );
     }

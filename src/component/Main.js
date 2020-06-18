@@ -5,6 +5,8 @@ import Dance from './dance/Dance';
 import Play from './dance/Play';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+import Fullscreen from "react-full-screen";
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 
 
 export default class Main extends React.Component {
@@ -25,29 +27,19 @@ export default class Main extends React.Component {
     }
 
     componentDidUpdate() {
-        this.fullScreenMode();
+        this.keepScreenAwake();
     }
 
     handlePlayButton = () => {
-        const isRunning = !this.state.isRunning;
-        this.setState({ isRunning: isRunning });
-        this.fullScreenMode(isRunning);
+        this.setState({ isRunning: !this.state.isRunning });
     };
 
     handleSettings = (settings) => {
-        this.setState({
-            settings: settings
-        });
+        this.setState({ settings: settings });
     };
 
-    fullScreenMode = () => {
-        if (!window.document.fullscreenElement && this.state.isRunning) {
-            console.log(this.inputRef.current);
-            this.inputRef.current.requestFullscreen();
-        }
-        else if (window.document.fullscreenElement && !this.state.isRunning) {
-            window.document.exitFullscreen();
-        }
+    keepScreenAwake() {
+        this.state.isRunning ? activateKeepAwake() : deactivateKeepAwake();
     }
 
     getDance = () => (<Dance
@@ -65,14 +57,16 @@ export default class Main extends React.Component {
 
     render() {
         return (
-            <Container ref={this.inputRef} className="component-main-container">
-                <Grid container direction="column" justify="center" alignItems="center" className="component-main-grid" >
-                    <Grid item>
-                        {this.state.isRunning ? this.getDance() : this.getSettings()}
+            <Fullscreen enabled={this.state.isRunning}>
+                <Container ref={this.inputRef} className="component-main-container">
+                    <Grid container direction="column" justify="center" alignItems="center" className="component-main-grid" >
+                        <Grid item>
+                            {this.state.isRunning ? this.getDance() : this.getSettings()}
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Play play={this.state.isRunning} onPlayButton={this.handlePlayButton} />
-            </Container >
+                    <Play play={this.state.isRunning} onPlayButton={this.handlePlayButton} />
+                </Container>
+            </Fullscreen>
         );
     }
 }

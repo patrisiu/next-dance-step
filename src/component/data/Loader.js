@@ -1,7 +1,7 @@
 import React from 'react';
 import './Loader.css';
 import Disclaimer from './Disclaimer';
-import logo from './wcs.png';
+import logo from '../logo.png';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -61,7 +61,6 @@ export default class Loader extends React.Component {
                     message: error.toString()
                 }
             });
-            console.log('Request failed', error);
         }
         else {
             this.props.onLoad(this.state.dances);
@@ -69,8 +68,6 @@ export default class Loader extends React.Component {
     }
 
     parse = (data) => {
-        console.log('Request succeeded with JSON response', data);
-
         const cells = this.parseSheetCells(data);
         const dance = this.parseDanceSteps(cells);
 
@@ -178,7 +175,7 @@ export default class Loader extends React.Component {
     getReadme = () => (
         <Container className="component-loader-center">
             <Typography className="component-loader-readme" variant="caption">
-                <Link href="https://github.com/patrisiu/next-dance-step/">GitHub Source</Link>
+                <Link href="https://github.com/patrisiu/next-dance-step/" color="inherit">GitHub README</Link>
             </Typography>
         </Container>
     );
